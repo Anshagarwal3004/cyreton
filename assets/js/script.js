@@ -165,59 +165,27 @@ document.addEventListener("DOMContentLoaded", () => {
         drawParticles();
     }
 
-    // ====== COVERFLOW VERTICAL CAROUSEL ======
+    // ====== DELAYED CARD EXPANSION ======
+    // Phase 1 (instant): CSS :hover handles glow + lift
+    // Phase 2 (delayed): JS adds .expanded after 500ms for the big grid push
     const serviceCards = document.querySelectorAll('.service-card');
-    const carouselDots = document.querySelectorAll('.carousel-dot');
-    const capabilitiesSection = document.getElementById('capabilities');
-    let currentActiveIndex = 0;
+    const expandTimers = new Map();
 
-    if (serviceCards.length > 0 && capabilitiesSection) {
-
-        function activateCard(index) {
-            if (index === currentActiveIndex) return;
-            currentActiveIndex = index;
-
-            serviceCards.forEach((card, i) => {
-                card.classList.toggle('active', i === index);
-            });
-
-            carouselDots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        }
-
-        // Click on a card to activate it (and sync scroll)
-        serviceCards.forEach((card, i) => {
-            card.addEventListener('click', () => {
-                activateCard(i);
-                const sectionTop = capabilitiesSection.getBoundingClientRect().top + window.scrollY;
-                const scrollTarget = sectionTop + ((capabilitiesSection.offsetHeight - window.innerHeight) * (i / serviceCards.length));
-                window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
-            });
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const timer = setTimeout(() => {
+                card.classList.add('expanded');
+            }, 800);
+            expandTimers.set(card, timer);
         });
 
-        // Click on dots to navigate
-        carouselDots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                activateCard(i);
-                const sectionTop = capabilitiesSection.getBoundingClientRect().top + window.scrollY;
-                const scrollTarget = sectionTop + ((capabilitiesSection.offsetHeight - window.innerHeight) * (i / serviceCards.length));
-                window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
-            });
+        card.addEventListener('mouseleave', () => {
+            // Clear the pending timer if they leave early
+            const timer = expandTimers.get(card);
+            if (timer) clearTimeout(timer);
+            expandTimers.delete(card);
+            // Instantly collapse
+            card.classList.remove('expanded');
         });
-
-        // Scroll-linked tracking
-        window.addEventListener('scroll', () => {
-            const rect = capabilitiesSection.getBoundingClientRect();
-
-            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                const totalScrollableDistance = rect.height - window.innerHeight;
-                let scrolledPercentage = -rect.top / totalScrollableDistance;
-                scrolledPercentage = Math.max(0, Math.min(scrolledPercentage, 0.999));
-
-                const activeIndex = Math.floor(scrolledPercentage * serviceCards.length);
-                activateCard(activeIndex);
-            }
-        });
-    }
+    });
 });

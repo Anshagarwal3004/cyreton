@@ -283,81 +283,52 @@ section {
     margin-bottom: 4rem;
 }
 
-/* CAPABILITIES — CENTERED VERTICAL COVERFLOW CAROUSEL */
+/* CAPABILITIES — SERVICES GRID */
 .capabilities-section {
-    position: relative;
-    height: 400vh;
-    padding: 0 !important;
-    max-width: none !important;
-}
-
-.capabilities-sticky-container {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+    padding: 6rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden;
 }
 
-.capabilities-sticky-container .section-header {
-    margin-bottom: 1.5rem;
-    flex-shrink: 0;
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    overflow: visible;
 }
 
-/* — The Carousel Container — */
-.services-carousel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 900px;
-    position: relative;
-    flex: 1;
-    justify-content: center;
-    perspective: 1200px;
+/* Dim siblings when a card is expanded */
+.services-grid .service-card.expanded ~ .service-card:not(.expanded),
+.services-grid .service-card:not(.expanded):has(~ .service-card.expanded) {
+    opacity: 0.4;
+    transform: scale(0.94);
+    filter: blur(1.5px);
 }
 
 /* — Individual Service Cards — */
 .service-card {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    padding: 2rem 2.5rem;
-    border-radius: 20px;
-    background: rgba(20, 20, 30, 0.35);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(20, 20, 30, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 2.5rem;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
-
-    /* Default: shrunken, faded, blurred */
-    transform: scale(0.72) translateY(0);
-    opacity: 0.25;
-    filter: blur(2px);
-    max-height: 90px;
-
+    z-index: 1;
+    opacity: 1;
+    filter: blur(0);
+    transform-origin: center center;
     transition:
-        transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
-        opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
-        filter 0.7s cubic-bezier(0.25, 1, 0.5, 1),
-        max-height 0.7s cubic-bezier(0.25, 1, 0.5, 1),
-        padding 0.7s cubic-bezier(0.25, 1, 0.5, 1),
-        border-color 0.7s ease,
-        box-shadow 0.7s ease,
-        background 0.5s ease;
+        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.8s ease,
+        filter 0.8s ease,
+        border-color 0.8s ease,
+        box-shadow 0.8s ease,
+        background 0.8s ease;
 }
 
-/* Neon glow blob behind each card */
+/* Neon glow backdrop */
 .service-card::after {
     content: '';
     position: absolute;
@@ -365,178 +336,118 @@ section {
     left: 50%;
     width: 0;
     height: 0;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.18) 0%, rgba(255, 20, 147, 0.06) 50%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, rgba(255, 20, 147, 0) 70%);
     transform: translate(-50%, -50%);
-    transition: width 1s ease, height 1s ease;
-    z-index: 0;
+    transition: width 0.8s ease, height 0.8s ease;
+    z-index: -1;
     border-radius: 50%;
     pointer-events: none;
 }
 
-/* — Icon Circle — */
+/* — PHASE 1: Instant hover — subtle glow + lift */
+.service-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: rgba(0, 255, 255, 0.3);
+    z-index: 2;
+    box-shadow:
+        0 0 25px rgba(0, 255, 255, 0.1),
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.service-card:hover::after {
+    width: 350px;
+    height: 350px;
+}
+
+/* — PHASE 2: Delayed expansion — card scales up BIG and overlays neighbors */
+.service-card.expanded,
+.service-card.expanded:hover {
+    transform: scale(1.4) translateY(-4px);
+    border-color: rgba(0, 255, 255, 0.5);
+    background: rgba(15, 15, 25, 0.9);
+    z-index: 10;
+    box-shadow:
+        0 0 40px rgba(0, 255, 255, 0.25),
+        0 0 80px rgba(0, 255, 255, 0.08),
+        0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.service-card.expanded::after {
+    width: 600px;
+    height: 600px;
+}
+
+/* — Icon — */
 .service-card-icon {
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--primary-cyan);
     background: rgba(0, 255, 255, 0.08);
     border: 1px solid rgba(0, 255, 255, 0.15);
-    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-    position: relative;
-    z-index: 1;
+    margin-bottom: 1.5rem;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* — Card Body — */
-.service-card-body {
-    position: relative;
-    z-index: 1;
-    flex: 1;
-    min-width: 0;
+.service-card:hover .service-card-icon {
+    transform: scale(1.08) rotate(-3deg);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+    border-color: rgba(0, 255, 255, 0.35);
 }
 
-.service-card-body h3 {
-    font-size: 1.15rem;
+.service-card.expanded .service-card-icon {
+    transform: rotate(-5deg);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+    border-color: rgba(0, 255, 255, 0.5);
+    background: rgba(0, 255, 255, 0.14);
+}
+
+/* — Text — */
+.service-card h3 {
+    font-size: 1.3rem;
     color: #fff;
-    margin-bottom: 0;
-    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 0.75rem;
 }
 
-.service-card-body p {
-    font-size: 1rem;
+.service-card p {
+    font-size: 0.95rem;
     color: var(--text-muted);
-    margin: 0;
     line-height: 1.6;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    margin-bottom: 1.25rem;
 }
 
-.service-card .pane-features {
+/* — Feature List — */
+.card-features {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.service-card .pane-features li {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 0.6rem;
+.card-features li {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
 }
 
-.service-card .pane-features li i {
+.card-features li i {
     color: var(--secondary-lime);
-    font-size: 1.15rem;
+    font-size: 1rem;
 }
 
-/* ===== ACTIVE CARD — THE BIG ONE ===== */
-.service-card.active {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-    filter: blur(0);
-    max-height: 400px;
-    padding: 3rem 3.5rem;
-    background: rgba(20, 20, 30, 0.55);
-    border-color: rgba(0, 255, 255, 0.4);
-    box-shadow:
-        0 0 30px rgba(0, 255, 255, 0.15),
-        0 0 60px rgba(0, 255, 255, 0.05),
-        0 20px 60px rgba(0, 0, 0, 0.4);
-}
-
-.service-card.active::after {
-    width: 700px;
-    height: 700px;
-}
-
-.service-card.active .service-card-icon {
-    width: 72px;
-    height: 72px;
-    font-size: 2.5rem;
-    border-radius: 20px;
-    background: rgba(0, 255, 255, 0.12);
-    border-color: rgba(0, 255, 255, 0.35);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
-}
-
-.service-card.active .service-card-body h3 {
-    font-size: 1.8rem;
-    margin-bottom: 0.75rem;
-    white-space: normal;
-}
-
-.service-card.active .service-card-body p {
-    max-height: 100px;
-    opacity: 1;
-    margin-bottom: 1.2rem;
-}
-
-.service-card.active .pane-features {
-    max-height: 300px;
-    opacity: 1;
-}
-
-/* — Navigation Dots — */
-.carousel-dots {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    margin-top: 1.5rem;
-    flex-shrink: 0;
-}
-
-.carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    transition: all 0.5s ease;
-}
-
-.carousel-dot.active {
-    background: var(--primary-cyan);
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
-    transform: scale(1.3);
-}
-
-/* — Mobile Responsive — */
 @media (max-width: 900px) {
-    .capabilities-section {
-        height: 350vh;
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-    .services-carousel {
-        gap: 1rem;
-    }
-    .service-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        padding: 1.5rem;
-        max-height: 70px;
-    }
-    .service-card.active {
-        padding: 2rem;
-        max-height: 450px;
-    }
-    .service-card.active .service-card-body h3 {
-        font-size: 1.4rem;
+    .service-card.expanded {
+        transform: scale(1.05) translateY(-4px);
     }
 }
 
