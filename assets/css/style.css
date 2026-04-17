@@ -171,18 +171,29 @@ nav {
 /* — Hover Effects — */
 /* Logo Text styling */
 .logo-text {
-    background: linear-gradient(90deg, #1565C0, #1E88E5, #00E5FF);
-    background-size: 200% auto;
+    background: linear-gradient(90deg, #1565C0, #1E88E5, #00E5FF, #1E88E5, #1565C0);
+    background-size: 400% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 0.5s ease;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     display: inline-block;
+    letter-spacing: 0.5px;
+    animation: textShimmer 8s linear infinite, logoTextReveal 1s ease-out 0.8s backwards;
+}
+
+@keyframes textShimmer {
+    to { background-position: 400% center; }
+}
+
+@keyframes logoTextReveal {
+    from { opacity: 0; transform: translateX(-8px); filter: blur(2px); }
+    to { opacity: 1; transform: translateX(0); filter: blur(0); }
 }
 
 .logo:hover .logo-text {
-    background-position: right center;
-    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
-    transform: translateX(4px);
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5));
+    transform: translateX(2px);
 }
 
 
