@@ -127,56 +127,51 @@ nav {
     transition: filter 0.3s ease;
 }
 
-.mod-path {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+/* — Sweeping Logo Animations — */
+.c-logo {
+    overflow: visible;
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-.p-1 {
-    stroke-dasharray: 250;
-    stroke-dashoffset: 250;
-    animation: drawPath 1.5s ease-out forwards;
+.sw-path {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawSw 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-.p-2 {
-    stroke-dasharray: 150;
-    stroke-dashoffset: 150;
-    animation: drawPath 1.5s ease-out 0.3s forwards;
+.sw-arc {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawSw 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s forwards;
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-@keyframes drawPath {
+@keyframes drawSw {
     to { stroke-dashoffset: 0; }
 }
 
-.mod-sphere {
-    opacity: 0;
-    transform: scale(0);
-    transform-origin: 75px 50px;
-    animation: popSphere 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s forwards;
+.sw-main { animation-delay: 0.1s; }
+.sw-inner { animation-delay: 0.4s; }
+.sw-dot { 
+    stroke-dasharray: 30; 
+    stroke-dashoffset: 30; 
+    animation-delay: 0.8s; 
 }
 
-@keyframes popSphere {
-    to { opacity: 1; transform: scale(1); }
+/* — Hover Effects — */
+.logo:hover .sw-arc {
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));
+    transform: scale(1.05);
 }
 
-.logo:hover .p-1 {
-    filter: drop-shadow(0 0 12px rgba(26, 115, 232, 0.6));
-    transform: scale(1.05) translate(-2px, 0);
+.logo:hover .sw-path {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
-.logo:hover .p-2 {
-    filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.6));
-    transform: scale(0.95) translate(4px, 0);
-}
-
-.logo:hover .mod-sphere {
-    transform: scale(1.3) translate(5px, 0);
-    filter: drop-shadow(0 0 15px #00FFFF);
-    fill: #FF1493;
-}
-
+/* — Hover Effects — */
 /* Logo Text styling */
 .logo-text {
-    background: linear-gradient(90deg, #00FFFF, #8A2BE2, #FF1493);
+    background: linear-gradient(90deg, #1565C0, #1E88E5, #00E5FF);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -186,9 +181,11 @@ nav {
 
 .logo:hover .logo-text {
     background-position: right center;
-    filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.5));
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
     transform: translateX(4px);
 }
+
+
 
 .nav-links {
     list-style: none;

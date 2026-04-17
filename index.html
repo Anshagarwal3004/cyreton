@@ -20,29 +20,28 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="index.html" style="text-decoration: none;" class="logo">
-                <svg class="c-logo" width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <svg class="c-logo" width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="mod-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#00FFFF" />
-                            <stop offset="100%" stop-color="#1A73E8" />
+                        <linearGradient id="sw-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0052D4"/>
+                            <stop offset="100%" stop-color="#00FFFF"/>
                         </linearGradient>
-                        <linearGradient id="mod-grad-2" x1="100%" y1="100%" x2="0%" y2="0%">
-                            <stop offset="0%" stop-color="#FF1493" />
-                            <stop offset="100%" stop-color="#8A2BE2" />
-                        </linearGradient>
-                        <filter id="mod-glow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="4" result="blur" />
-                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        <filter id="sw-glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
                         </filter>
                     </defs>
-                    <!-- Outer sleek curve -->
-                    <path class="mod-path p-1" d="M 80,20 C 50,5 20,20 15,50 C 10,80 40,95 80,80" fill="none"
-                        stroke="url(#mod-grad-1)" stroke-width="14" stroke-linecap="round" />
-                    <!-- Inner sleek accent curve -->
-                    <path class="mod-path p-2" d="M 65,35 C 45,25 30,35 30,50 C 30,65 45,75 65,65" fill="none"
-                        stroke="url(#mod-grad-2)" stroke-width="10" stroke-linecap="round" />
-                    <!-- Central energy sphere -->
-                    <circle cx="75" cy="50" r="8" fill="#00FFFF" filter="url(#mod-glow)" class="mod-sphere" />
+                    <!-- Main Outer Curve (drawn first, back Layer) -->
+                    <path class="sw-path sw-main" d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                    
+                    <!-- Blue Swoosh Arc (drawn middle, goes over outer curve) -->
+                    <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue)" stroke-width="12" stroke-linecap="butt" />
+                    
+                    <!-- Inner Curve (drawn last, goes over blue arc and outer curve) -->
+                    <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                    
+                    <!-- Floating Dot/Dash -->
+                    <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
                 </svg> <span class="logo-text">Cyreton</span>
             </a>
             <ul class="nav-links">
@@ -255,29 +254,28 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="index.html" style="text-decoration: none;" class="logo">
-                    <svg class="c-logo" width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="c-logo" width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="mod-grad-f1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#00FFFF" />
-                                <stop offset="100%" stop-color="#1A73E8" />
+                            <linearGradient id="sw-blue-f" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0052D4"/>
+                                <stop offset="100%" stop-color="#00FFFF"/>
                             </linearGradient>
-                            <linearGradient id="mod-grad-f2" x1="100%" y1="100%" x2="0%" y2="0%">
-                                <stop offset="0%" stop-color="#FF1493" />
-                                <stop offset="100%" stop-color="#8A2BE2" />
-                            </linearGradient>
-                            <filter id="mod-glow-f" x="-20%" y="-20%" width="140%" height="140%">
-                                <feGaussianBlur stdDeviation="4" result="blur" />
-                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            <filter id="sw-glow-f" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
                             </filter>
                         </defs>
-                        <!-- Outer sleek curve -->
-                        <path class="mod-path p-1" d="M 80,20 C 50,5 20,20 15,50 C 10,80 40,95 80,80" fill="none"
-                            stroke="url(#mod-grad-f1)" stroke-width="14" stroke-linecap="round" />
-                        <!-- Inner sleek accent curve -->
-                        <path class="mod-path p-2" d="M 65,35 C 45,25 30,35 30,50 C 30,65 45,75 65,65" fill="none"
-                            stroke="url(#mod-grad-f2)" stroke-width="10" stroke-linecap="round" />
-                        <!-- Central energy sphere -->
-                        <circle cx="75" cy="50" r="8" fill="#00FFFF" filter="url(#mod-glow-f)" class="mod-sphere" />
+                        <!-- Main Outer Curve (drawn first, back Layer) -->
+                        <path class="sw-path sw-main" d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                        
+                        <!-- Blue Swoosh Arc (drawn middle, goes over outer curve) -->
+                        <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue-f)" stroke-width="12" stroke-linecap="butt" />
+                        
+                        <!-- Inner Curve (drawn last, goes over blue arc and outer curve) -->
+                        <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                        
+                        <!-- Floating Dot/Dash -->
+                        <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
                     </svg> <span class="logo-text">Cyreton</span>
                 </a>
                 <p>Propelling growth through strategic technology consulting.</p>
