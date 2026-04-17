@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cyreton Consulting Insights - Building Scalable Infrastructures.">
+    <title>Building Scalable Infrastructures | Cyreton Insights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .article-page {
+            max-width: 900px;
+            margin: 120px auto 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 3rem;
+        }
+
+        .article-header .cat {
+            color: var(--primary-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .article-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .article-hero-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .article-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content ul {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .newsletter-cta {
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .newsletter-cta::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 2.2rem; }
+            .article-meta { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" style="text-decoration: none;" class="logo">
+                <svg class="c-logo" width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="mod-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#00FFFF" />
+                            <stop offset="100%" stop-color="#1A73E8" />
+                        </linearGradient>
+                        <linearGradient id="mod-grad-2" x1="100%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#FF1493" />
+                            <stop offset="100%" stop-color="#8A2BE2" />
+                        </linearGradient>
+                        <filter id="mod-glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                    </defs>
+                    <path class="mod-path p-1" d="M 80,20 C 50,5 20,20 15,50 C 10,80 40,95 80,80" fill="none"
+                        stroke="url(#mod-grad-1)" stroke-width="14" stroke-linecap="round" />
+                    <path class="mod-path p-2" d="M 65,35 C 45,25 30,35 30,50 C 30,65 45,75 65,65" fill="none"
+                        stroke="url(#mod-grad-2)" stroke-width="10" stroke-linecap="round" />
+                    <circle cx="75" cy="50" r="8" fill="#00FFFF" filter="url(#mod-glow)" class="mod-sphere" />
+                </svg> <span class="logo-text">Cyreton</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#capabilities">Services</a></li>
+                <li><a href="index.html#social-proof">Industries</a></li>
+                <li><a href="career.html">Careers</a></li>
+                <li><a href="index.html#insights" class="highlight">Insights</a></li>
+                <li><a href="contact.html" class="btn-outline">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn"><i class="ph ph-list"></i></div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="article-page scroll-anim fade-in-up">
+        
+        <header class="article-header">
+            <span class="cat">Architecture</span>
+            <h1>Building Scalable Infrastructures</h1>
+            <div class="article-meta">
+                <i class="ph-fill ph-user-circle" style="font-size: 2rem;"></i>
+                <span>By Ansh Agarwal &middot; Founder, Cyreton</span>
+                <span>&middot;</span>
+                <span>5 Min Read</span>
+            </div>
+        </header>
+
+        <!-- Dummy hero image -->
+        <img src="assets/images/abstract_cloud_tech.png" alt="Cloud Infrastructure" class="article-hero-img" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80'" />
+
+        <div class="article-content">
+            <p>In modern enterprise environments, scaling an application from thousands to millions of concurrent users isn't just about adding more servers. It's about fundamentally rethinking how data moves, how state is managed, and how resilient the system is to localized failures.</p>
+            
+            <p>At Cyreton, our technology consulting practice frequently audits monolithic legacy systems that have hit their natural computational ceiling. In this brief whitepaper, we dissect the core pillars required to build hyper-scalable cloud paradigms.</p>
+
+            <h2>1. Decoupling the Monolith</h2>
+            <p>The first step in any scaling motion is isolating domains. By shifting toward microservices or well-structured modular monoliths, teams can scale individual components independently without wasting compute resources.</p>
+            <ul>
+                <li><strong>Stateless Services:</strong> Ensure your application nodes do not store local state, pushing it to distributed rapid caches like Redis instead.</li>
+                <li><strong>Event-Driven Patterns:</strong> Utilize Kafka or RabbitMQ to decouple real-time communication, allowing massive traffic spikes without ever dropping incoming user requests.</li>
+            </ul>
+
+            <h2>2. Database Modernization</h2>
+            <p>A web server is only as scalable as its database. Moving beyond single-node relational databases is a critical phase of modernization.</p>
+            <p>We advocate for read-replica architectures, strategic logic sharding, or entirely migrating to NoSQL implementations like DynamoDB or Cassandra when the data structure allows it. Furthermore, proper indexing and query optimization on the application layer often provides a massive performance boost at a fraction of the cost.</p>
+
+            <h2>3. Zero-Downtime Infrastructure via Code</h2>
+            <p>Manually configuring servers is a massive operational risk. We deploy all cloud configurations using strictly defined Infrastructure-as-Code (such as Terraform or AWS CDK). This allows teams to spin up identical replica availability zones anywhere in the world within minutes if disaster strikes, guaranteeing 99.99% uptime.</p>
+
+        </div>
+
+        <div class="newsletter-cta">
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Need Help Scaling Your Architecture?</h3>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Our principal architects are ready to audit your stack and design a robust modernization roadmap.</p>
+            <a href="contact.html" class="btn-primary">Book a Consulting Session <i class="ph ph-arrow-right"></i></a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" style="text-decoration: none;" class="logo">
+                    <svg class="c-logo" width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="mod-grad-f1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00FFFF" />
+                                <stop offset="100%" stop-color="#1A73E8" />
+                            </linear-Gradient>
+                            <linearGradient id="mod-grad-f2" x1="100%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" stop-color="#FF1493" />
+                                <stop offset="100%" stop-color="#8A2BE2" />
+                            </linearGradient>
+                            <filter id="mod-glow-f" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="4" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <path class="mod-path p-1" d="M 80,20 C 50,5 20,20 15,50 C 10,80 40,95 80,80" fill="none"
+                            stroke="url(#mod-grad-f1)" stroke-width="14" stroke-linecap="round" />
+                        <path class="mod-path p-2" d="M 65,35 C 45,25 30,35 30,50 C 30,65 45,75 65,65" fill="none"
+                            stroke="url(#mod-grad-f2)" stroke-width="10" stroke-linecap="round" />
+                        <circle cx="75" cy="50" r="8" fill="#00FFFF" filter="url(#mod-glow-f)" class="mod-sphere" />
+                    </svg> <span class="logo-text">Cyreton</span>
+                </a>
+                <p>Propelling growth through strategic technology consulting.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html#capabilities">Services</a></li>
+                    <li><a href="career.html">Careers</a></li>
+                    <li><a href="index.html#insights">Insights</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Let's Talk</h4>
+                <p>contact@cyreton.com</p>
+                <div class="socials">
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-twitter-logo"></i></a>
+                    <a href="#"><i class="ph ph-github-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cyreton Technology Consulting. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
