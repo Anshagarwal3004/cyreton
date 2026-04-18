@@ -22,4 +22,4 @@ jobs:
         server-dir: ./
         protocol: ftps
         port: 990
-        security: loose  # This helps with self-signed certificates on shared hostin
+        security: loose  # This helps with self-signed certificates on shared hosting
