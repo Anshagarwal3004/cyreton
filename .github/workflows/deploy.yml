@@ -3,7 +3,7 @@ name: Deploy Cyreton Site
 on:
   push:
     branches:
-      - main  # Make sure your primary branch is named 'main'
+      - main
 
 jobs:
   web-deploy:
@@ -19,5 +19,4 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # This sends files to the main web folder
-        server-dir: /public_html/
+        server-dir: ./
