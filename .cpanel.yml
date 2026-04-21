@@ -1,6 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/cyretoni/public_html
-    - /bin/cp -rv * $DEPLOYPATH
-    - /bin/cp -rv .[^.]* $DEPLOYPATH
