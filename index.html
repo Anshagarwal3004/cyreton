@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cyreton is a premier technology consulting firm providing expert advisory, IT strategy, and scalable enterprise architecture.">
+    <title>Cyreton | Technology Consulting Firm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" style="text-decoration: none;" class="logo">
+                <svg class="c-logo" width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="sw-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0052D4"/>
+                            <stop offset="100%" stop-color="#00FFFF"/>
+                        </linearGradient>
+                        <filter id="sw-glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                        </filter>
+                    </defs>
+                    <!-- Main Outer Curve (drawn first, back Layer) -->
+                    <path class="sw-path sw-main" d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                    
+                    <!-- Blue Swoosh Arc (drawn middle, goes over outer curve) -->
+                    <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue)" stroke-width="12" stroke-linecap="butt" />
+                    
+                    <!-- Inner Curve (drawn last, goes over blue arc and outer curve) -->
+                    <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                    
+                    <!-- Floating Dot/Dash -->
+                    <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                </svg> <span class="logo-text">Cyreton</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#capabilities">Services</a></li>
+                <li><a href="#social-proof">Industries</a></li>
+                <li><a href="career.html">Careers</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="contact.html" class="btn-outline">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn"><i class="ph ph-list"></i></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content fade-in-up">
+            <div class="badge">Strategic IT Advisory</div>
+            <h1>WHERE <span class="text-gradient">STRATEGY</span> MEETS<br />TECHNOLOGY <span
+                    class="text-gradient">CONSULTING</span>.</h1>
+            <p>Partnering with enterprises to navigate complex digital transformations with expert advisory and IT
+                strategy.</p>
+            <div class="hero-actions">
+                <a href="#capabilities" class="btn-primary">EXPLORE SERVICES <i class="ph ph-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section id="capabilities" class="capabilities-section scroll-anim">
+        <div class="section-header">
+            <h2>Consulting Services</h2>
+            <p>End-to-end technology advisory and leadership aligned with your business objectives.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card fade-in-up" style="animation-delay: 0.1s">
+                <div class="service-card-icon"><i class="ph ph-cpu"></i></div>
+                <h3>CTO-as-a-Service</h3>
+                <p>Strategic technology leadership to guide product vision, team scaling, and technology choices.</p>
+                <ul class="card-features">
+                    <li><i class="ph-fill ph-check-circle"></i> Executive Technical Strategy</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Vendor & Stack Selection</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Engineering Team Structuring</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in-up" style="animation-delay: 0.2s">
+                <div class="service-card-icon"><i class="ph ph-stack"></i></div>
+                <h3>Scalable Architecture</h3>
+                <p>Designing robust product foundations that grow seamlessly as user demand increases.</p>
+                <ul class="card-features">
+                    <li><i class="ph-fill ph-check-circle"></i> Microservices Implementation</li>
+                    <li><i class="ph-fill ph-check-circle"></i> High-Concurrency Systems</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Legacy Monolith Decoupling</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in-up" style="animation-delay: 0.3s">
+                <div class="service-card-icon"><i class="ph ph-graph"></i></div>
+                <h3>Data Engineering & AI</h3>
+                <p>Transforming complex datasets into actionable intelligence with modern AI/ML pipelines.</p>
+                <ul class="card-features">
+                    <li><i class="ph-fill ph-check-circle"></i> Streaming Analytics (Kafka/Flink)</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Custom LLM & RAG Deployments</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Enterprise Data Warehousing</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in-up" style="animation-delay: 0.4s">
+                <div class="service-card-icon"><i class="ph ph-cloud-arrow-up"></i></div>
+                <h3>Cloud & DevOps Strategy</h3>
+                <p>Ensuring highly-available infrastructures with streamlined CI/CD automation.</p>
+                <ul class="card-features">
+                    <li><i class="ph-fill ph-check-circle"></i> Zero-Downtime CI/CD Pipelines</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Cloud-Native Kubernetes</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Infrastructure-as-Code Audits</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in-up" style="animation-delay: 0.5s">
+                <div class="service-card-icon"><i class="ph ph-shield-check"></i></div>
+                <h3>Security & Governance</h3>
+                <p>Enterprise-grade security audits, compliance, and zero-trust framework implementation.</p>
+                <ul class="card-features">
+                    <li><i class="ph-fill ph-check-circle"></i> SOC2 & HIPAA Compliance</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Penetration Testing Oversight</li>
+                    <li><i class="ph-fill ph-check-circle"></i> IAM & Zero-Trust Architecture</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in-up" style="animation-delay: 0.6s">
+                <div class="service-card-icon"><i class="ph ph-magnifying-glass"></i></div>
+                <h3>Technical Due Diligence</h3>
+                <p>Comprehensive code and architecture reviews for M&A, investment, or risk assessment.</p>
+                <ul class="card-features">
+                    <li><i class="ph-fill ph-check-circle"></i> Codebase Quality Audits</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Scalability Risk Analysis</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Infrastructure Cost Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section id="social-proof" class="social-proof-section scroll-anim">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3 class="counter" data-target="80">0</h3>
+                <span class="plus-sign">+</span>
+                <p>Projects Delivered</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="15">0</h3>
+                <span class="plus-sign">+</span>
+                <p>Industries Served</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="98">0</h3>
+                <span class="plus-sign">%</span>
+                <p>Client Satisfaction</p>
+            </div>
+        </div>
+
+        <div class="founder-quote-wrapper" style="margin-bottom: 4rem;">
+            <div class="glass-card" style="text-align: center; padding: 3rem 2rem;">
+                <i class="ph-fill ph-quotes"
+                    style="font-size: 3rem; color: var(--primary-cyan); margin-bottom: 1.5rem; display: inline-block;"></i>
+                <p class="quote"
+                    style="font-size: 1.25rem; max-width: 800px; margin: 0 auto 2rem auto; line-height: 1.6; color: #fff;">
+                    "Our strategic IT consulting and architecture advisory provides the clarity needed to confidently
+                    navigate complex digital transformations."</p>
+                <div class="author" style="text-align: center; display: block;">
+                    <strong
+                        style="color: var(--secondary-lime); display: block; font-size: 1.1rem; margin-bottom: 0.25rem;">Ansh
+                        Agarwal</strong>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">Founder, Cyreton</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonials-wrapper"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; text-align: left;">
+            <div class="glass-card">
+                <i class="ph ph-bank"></i>
+                <h4 style="color: #fff; font-size: 1.25rem; margin-bottom: 0.5rem; margin-top: 1.5rem;">FinTech &
+                    Blockchain</h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; line-height: 1.6;">Secure, compliant,
+                    and hyper-scalable financial infrastructure and decentralized architectures.</p>
+            </div>
+            <div class="glass-card">
+                <i class="ph ph-heartbeat"></i>
+                <h4 style="color: #fff; font-size: 1.25rem; margin-bottom: 0.5rem; margin-top: 1.5rem;">Healthcare IT
+                </h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; line-height: 1.6;">HIPAA-compliant
+                    data pipelines and the rapid modernization of highly complex legacy clinic platforms.</p>
+            </div>
+            <div class="glass-card">
+                <i class="ph ph-shopping-cart"></i>
+                <h4 style="color: #fff; font-size: 1.25rem; margin-bottom: 0.5rem; margin-top: 1.5rem;">Global Commerce
+                </h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; line-height: 1.6;">High-availability
+                    resilient transaction engines, intelligent search, and zero-downtime distribution.</p>
+            </div>
+            <div class="glass-card">
+                <i class="ph ph-cloud-arrow-up"></i>
+                <h4 style="color: #fff; font-size: 1.25rem; margin-bottom: 0.5rem; margin-top: 1.5rem;">Enterprise SaaS
+                </h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; line-height: 1.6;">Multi-tenant
+                    kubernetes architectures, deep datadog observability, and complex DevOps automation strategies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights / Knowledge Base -->
+    <section id="insights" class="insights-section scroll-anim">
+        <div class="section-header">
+            <h2>Consulting Insights</h2>
+            <p>Deep-dives into technology transformation, advisory, and enterprise IT strategy.</p>
+        </div>
+        <div class="insights-grid">
+            <article class="insight-card">
+                <div class="img-container">
+                    <img src="assets/images/abstract_cloud_tech.png" alt="Scalable infrastructure" />
+                </div>
+                <div class="insight-content">
+                    <span class="cat">Architecture</span>
+                    <h3>Building Scalable Infrastructures</h3>
+                    <p>Learn the fundamental patterns required to build systems that handle millions of requests.</p>
+                    <a href="article.html" class="read-more">Read Article <i class="ph ph-arrow-right"></i></a>
+                </div>
+            </article>
+            <article class="insight-card">
+                <div class="img-container">
+                    <img src="assets/images/abstract_data_growth.png" alt="Digital ROI" />
+                </div>
+                <div class="insight-content">
+                    <span class="cat">Strategy</span>
+                    <h3>The ROI of Digital Strategy</h3>
+                    <p>Why modernizing your tech stack isn't just an expense, but an exponential growth driver.</p>
+                    <a href="article.html" class="read-more">Read Article <i class="ph ph-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" style="text-decoration: none;" class="logo">
+                    <svg class="c-logo" width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="sw-blue-f" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0052D4"/>
+                                <stop offset="100%" stop-color="#00FFFF"/>
+                            </linearGradient>
+                            <filter id="sw-glow-f" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                            </filter>
+                        </defs>
+                        <!-- Main Outer Curve (drawn first, back Layer) -->
+                        <path class="sw-path sw-main" d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                        
+                        <!-- Blue Swoosh Arc (drawn middle, goes over outer curve) -->
+                        <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue-f)" stroke-width="12" stroke-linecap="butt" />
+                        
+                        <!-- Inner Curve (drawn last, goes over blue arc and outer curve) -->
+                        <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                        
+                        <!-- Floating Dot/Dash -->
+                        <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                    </svg> <span class="logo-text">Cyreton</span>
+                </a>
+                <p>Propelling growth through strategic technology consulting.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#capabilities">Services</a></li>
+                    <li><a href="career.html">Careers</a></li>
+                    <li><a href="#insights">Insights</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Let's Talk</h4>
+                <p>contact@cyreton.com</p>
+                <div class="socials">
+                    <a href="https://www.linkedin.com/company/cyreton/about/?viewAsMember=true" target="_blank"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#" class="instagram-link"><i class="ph ph-instagram-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cyreton Technology Consulting. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Instagram QR Modal -->
+    <div id="insta-qr-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close"><i class="ph ph-x"></i></button>
+            <img src="assets/images/cyreton_insta.jpeg" alt="Instagram QR Code" />
+            <p>Scan to follow us on Instagram</p>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
