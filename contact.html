@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Cyreton, a premier technology consulting firm specializing in IT advisory, digital transformation, and scalable enterprise architecture.">
+    <meta name="description"
+        content="Contact Cyreton, a premier technology consulting firm specializing in IT advisory, digital transformation, and scalable enterprise architecture.">
     <title>Cyreton | Technology Consulting Contact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +14,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         /* Comprehensive Contact Layout */
-        .contact-section { margin-top: 100px; padding: 4rem 2rem; }
+        .contact-section {
+            margin-top: 100px;
+            padding: 4rem 2rem;
+        }
+
         .contact-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -20,24 +26,155 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
         }
-        .contact-info-panel h3 { font-size: 2rem; margin-bottom: 1.5rem; }
-        .contact-info-panel p { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.6; }
-        .info-card { background: rgba(20, 20, 30, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 16px; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; z-index: 1; }
-        .info-card::after { content: ''; position: absolute; top: 50%; left: 0%; width: 0; height: 0; background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, rgba(255, 20, 147, 0) 70%); transform: translate(-50%, -50%); transition: width 0.6s ease, height 0.6s ease; z-index: -1; border-radius: 50%; }
-        .info-card:hover::after { width: 400px; height: 400px; }
-        .info-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 25px rgba(0, 255, 255, 0.08), 0 0 15px rgba(255, 20, 147, 0.08); border-color: rgba(0, 255, 255, 0.3); }
-        .info-card i { font-size: 2rem; color: #00FFFF; transition: all 0.4s ease; display: inline-block; }
-        .info-card:hover i { transform: scale(1.15) rotate(5deg); color: #fff; filter: drop-shadow(0 0 10px #00FFFF); }
-        .info-card h4 { margin-bottom: 0.5rem; font-size: 1.2rem; }
-        .info-card p { margin-bottom: 0; font-size: 0.95rem; }
-        .contact-form-panel { background: rgba(20, 20, 30, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 3rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden; z-index: 1; }
-        .contact-form-panel::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 50% 0%, rgba(0, 255, 255, 0.05) 0%, transparent 50%); z-index: -1; pointer-events: none; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group.full-width { grid-column: span 2; }
-        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; font-family: inherit; font-size: 1rem; transition: border-color 0.3s; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary-cyan); outline: none; box-shadow: 0 0 8px rgba(0, 255, 255, 0.2); }
+
+        .contact-info-panel h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-panel p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .info-card {
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, rgba(255, 20, 147, 0) 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .info-card:hover::after {
+            width: 400px;
+            height: 400px;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.08), 0 0 15px rgba(255, 20, 147, 0.08);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .info-card i {
+            font-size: 2rem;
+            color: #00FFFF;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+
+        .info-card:hover i {
+            transform: scale(1.15) rotate(5deg);
+            color: #fff;
+            filter: drop-shadow(0 0 10px #00FFFF);
+        }
+
+        .info-card h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .contact-form-panel {
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .contact-form-panel::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-cyan);
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+        }
+
         .form-group select {
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300FFFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -47,13 +184,23 @@
             padding-right: 3rem;
             cursor: pointer;
         }
+
         @media (max-width: 900px) {
-            .contact-container { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav id="navbar">
@@ -62,25 +209,30 @@
                 <svg class="c-logo" width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="sw-blue" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#0052D4"/>
-                            <stop offset="100%" stop-color="#00FFFF"/>
+                            <stop offset="0%" stop-color="#0052D4" />
+                            <stop offset="100%" stop-color="#00FFFF" />
                         </linearGradient>
                         <filter id="sw-glow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="3" result="blur"/>
-                            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                            <feGaussianBlur stdDeviation="3" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
                     </defs>
                     <!-- Main Outer Curve (drawn first, back Layer) -->
-                    <path class="sw-path sw-main" d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
-                    
+                    <path class="sw-path sw-main"
+                        d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65"
+                        fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+
                     <!-- Blue Swoosh Arc (drawn middle, goes over outer curve) -->
-                    <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue)" stroke-width="12" stroke-linecap="butt" />
-                    
+                    <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue)"
+                        stroke-width="12" stroke-linecap="butt" />
+
                     <!-- Inner Curve (drawn last, goes over blue arc and outer curve) -->
-                    <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
-                    
+                    <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF"
+                        stroke-width="8" stroke-linecap="square" />
+
                     <!-- Floating Dot/Dash -->
-                    <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                    <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8"
+                        stroke-linecap="square" />
                 </svg> <span class="logo-text">Cyreton</span>
             </a>
             <ul class="nav-links">
@@ -94,19 +246,21 @@
             <div class="mobile-menu-btn"><i class="ph ph-list"></i></div>
         </div>
     </nav>
-    
+
     <!-- Contact Section -->
     <section class="contact-section scroll-anim fade-in-up visible">
         <div class="section-header">
             <h2>Get in Touch</h2>
             <p>Ready to propel your business with expert technology consulting?</p>
         </div>
-        
+
         <div class="contact-container">
             <div class="contact-info-panel">
                 <h3>Let's Talk Strategy</h3>
-                <p>Every successful digital transformation begins with a conversation. Reach out to our advisory team to discuss how we can build scalable, secure, and modern infrastructures tailored to your business goals.</p>
-                
+                <p>Every successful digital transformation begins with a conversation. Reach out to our advisory team to
+                    discuss how we can build scalable, secure, and modern infrastructures tailored to your business
+                    goals.</p>
+
                 <div class="info-card">
                     <i class="ph ph-envelope-simple"></i>
                     <div>
@@ -117,7 +271,10 @@
             </div>
 
             <div class="contact-form-panel">
-                <form action="#" method="POST">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="de8b3069-1487-4f99-8df5-4a0d63c38083">
+                    <input type="hidden" name="from_name" value="Cyreton Contact Form">
+                    <input type="hidden" name="subject" value="New Contact Inquiry from Cyreton">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -128,12 +285,12 @@
                             <input type="email" id="email" name="email" required />
                         </div>
                     </div>
-                    
+
                     <div class="form-group full-width">
                         <label for="company">Company</label>
                         <input type="text" id="company" name="company" required />
                     </div>
-                    
+
                     <div class="form-group full-width">
                         <label for="inquiry">How can we help you?</label>
                         <select id="inquiry" name="inquiry">
@@ -148,9 +305,12 @@
 
                     <div class="form-group full-width">
                         <label for="message">Project Details</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Tell us briefly about your current technology stack and goals..." required></textarea>
+                        <textarea id="message" name="message" rows="5"
+                            placeholder="Tell us briefly about your current technology stack and goals..."
+                            required></textarea>
                     </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 1.2rem;">SCHEDULE A CONSULTATION</button>
+                    <button type="submit" class="btn-primary"
+                        style="width: 100%; justify-content: center; padding: 1.2rem;">SCHEDULE A CONSULTATION</button>
                 </form>
             </div>
         </div>
@@ -164,25 +324,30 @@
                     <svg class="c-logo" width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="sw-blue-f" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#0052D4"/>
-                                <stop offset="100%" stop-color="#00FFFF"/>
+                                <stop offset="0%" stop-color="#0052D4" />
+                                <stop offset="100%" stop-color="#00FFFF" />
                             </linearGradient>
                             <filter id="sw-glow-f" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="3" result="blur"/>
-                                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                <feGaussianBlur stdDeviation="3" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
                         <!-- Main Outer Curve (drawn first, back Layer) -->
-                        <path class="sw-path sw-main" d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
-                        
+                        <path class="sw-path sw-main"
+                            d="M 60,15 C 75,35 80,65 55,85 C 30,100 10,75 20,55 C 30,35 50,50 45,70 C 40,80 30,70 30,65"
+                            fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+
                         <!-- Blue Swoosh Arc (drawn middle, goes over outer curve) -->
-                        <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue-f)" stroke-width="12" stroke-linecap="butt" />
-                        
+                        <path class="sw-arc" d="M 12,65 C 30,35 60,35 90,65" fill="none" stroke="url(#sw-blue-f)"
+                            stroke-width="12" stroke-linecap="butt" />
+
                         <!-- Inner Curve (drawn last, goes over blue arc and outer curve) -->
-                        <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
-                        
+                        <path class="sw-path sw-inner" d="M 42,22 C 55,40 60,60 48,82" fill="none" stroke="#FFFFFF"
+                            stroke-width="8" stroke-linecap="square" />
+
                         <!-- Floating Dot/Dash -->
-                        <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square" />
+                        <path class="sw-path sw-dot" d="M 23,28 L 30,31" fill="none" stroke="#FFFFFF" stroke-width="8"
+                            stroke-linecap="square" />
                     </svg> <span class="logo-text">Cyreton</span>
                 </a>
                 <p>Propelling growth through strategic technology consulting.</p>
@@ -200,7 +365,8 @@
                 <h4>Let's Talk</h4>
                 <p>contact@cyreton.com</p>
                 <div class="socials">
-                    <a href="https://www.linkedin.com/company/cyreton/about/?viewAsMember=true" target="_blank"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="https://www.linkedin.com/company/cyreton/about/?viewAsMember=true" target="_blank"><i
+                            class="ph ph-linkedin-logo"></i></a>
                     <a href="#" class="instagram-link"><i class="ph ph-instagram-logo"></i></a>
                 </div>
             </div>
@@ -221,4 +387,5 @@
 
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
