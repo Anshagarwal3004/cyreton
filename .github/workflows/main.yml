@@ -1,22 +1,25 @@
-name: Deploy Cyreton
+name: Secure SSH Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: 🚀 Sync Files
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🚀 Deploy to HostingN
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: "184.174.36.72"
-          REMOTE_USER: "cyretoni"
-          SSH_PORT: 21098  # <--- This is likely the missing piece!
+          REMOTE_HOST: ${{ secrets.SSH_SERVER }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          REMOTE_PORT: 22  # Changed from SSH_PORT to the correct variable name
           TARGET: "/home/cyretoni/public_html"
           SOURCE: "./"
-          # This bypasses the "Strict Host Key" check which causes hangs
-          ARGS: "-avzr --delete -e 'ssh -p 21098 -o StrictHostKeyChecking=no'"
+          ARGS: "-avzr --delete"
+          EXCLUDE: "/.github/, /.git/"
