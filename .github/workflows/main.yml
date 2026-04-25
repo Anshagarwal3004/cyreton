@@ -1,22 +1,23 @@
-name: Deploy Website
+name: Secure SSH Deploy
 
 on:
   push:
     branches:
-      - main  # This ensures it only deploys when you push to the main branch
+      - main
 
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v3
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ./  # This tells it to upload to the directory you set in Step 1
+      - name: 🚀 Deploy via rsync
+        uses: Burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avzr --delete
+          path: ./ 
+          remote_path: /home/cyretoni/public_html
+          remote_host: ${{ secrets.SSH_SERVER }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
