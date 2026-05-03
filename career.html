@@ -981,31 +981,37 @@
                         <textarea id="cover-letter" name="cover-letter" rows="4"
                             placeholder="Tell us why you're a great fit..." required></textarea>
                     </div>
-
                     <div class="form-group full-width">
                         <label for="resume">Attach Resume (PDF, DOCX)</label>
                         <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required />
                     </div>
-
                     <!-- Social Follow Recommendation -->
                     <div class="social-follow-panel">
                         <div class="social-follow-header">
                             <i class="ph ph-bell-ringing"></i>
                             <div>
                                 <h4>Stay Ahead — Follow Us</h4>
-                                <p>We post role updates, hiring timelines, and insider tips exclusively on our socials. Following us ensures you never miss a critical update about your application status or new openings.</p>
+                                <p>We post role updates, hiring timelines, and insider tips exclusively on our socials.
+                                    Following us ensures you never miss a critical update about your application status
+                                    or new openings.</p>
                             </div>
                         </div>
                         <div class="social-follow-checks">
                             <label class="social-check-label" for="follow-linkedin">
                                 <input type="checkbox" id="follow-linkedin" />
                                 <span class="custom-checkbox"><i class="ph-fill ph-check"></i></span>
-                                <span>I'm following Cyreton on <a href="https://www.linkedin.com/company/cyreton/about/?viewAsMember=true" target="_blank" class="social-inline-link"><i class="ph ph-linkedin-logo"></i> LinkedIn</a></span>
+                                <span>I'm following Cyreton on <a
+                                        href="https://www.linkedin.com/company/cyreton/about/?viewAsMember=true"
+                                        target="_blank" class="social-inline-link"><i class="ph ph-linkedin-logo"></i>
+                                        LinkedIn</a></span>
                             </label>
                             <label class="social-check-label" for="follow-instagram">
                                 <input type="checkbox" id="follow-instagram" />
                                 <span class="custom-checkbox"><i class="ph-fill ph-check"></i></span>
-                                <span>I'm following Cyreton on <a href="https://www.instagram.com/cyreton.official?utm_source=qr&igsh=MTNwc3Q5YTZqZGtpeQ==" target="_blank" class="social-inline-link instagram-link"><i class="ph ph-instagram-logo"></i> Instagram</a></span>
+                                <span>I'm following Cyreton on <a
+                                        href="https://www.instagram.com/cyreton.official?utm_source=qr&igsh=MTNwc3Q5YTZqZGtpeQ=="
+                                        target="_blank" class="social-inline-link instagram-link"><i
+                                            class="ph ph-instagram-logo"></i> Instagram</a></span>
                             </label>
                         </div>
                     </div>
@@ -1154,7 +1160,7 @@
                 }
             });
 
-            applicationForm.addEventListener('submit', function(e) {
+            applicationForm.addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 const submitBtn = document.getElementById('submit-application-btn');
@@ -1163,25 +1169,90 @@
                 submitBtn.disabled = true;
 
                 const formData = new FormData(applicationForm);
-                
+
                 // Add follow status to form data for record
                 const linkedinChecked = document.getElementById('follow-linkedin').checked;
                 const instagramChecked = document.getElementById('follow-instagram').checked;
                 formData.append('linkedin_followed', linkedinChecked ? 'Yes' : 'No');
                 formData.append('instagram_followed', instagramChecked ? 'Yes' : 'No');
 
-                fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(async (response) => {
-                    let json = await response.json();
-                    if (response.status == 200) {
-                        const allFollowed = linkedinChecked && instagramChecked;
+                // Create a copy of formData without the 'resume' file for Web3Forms
+                const web3FormData = new FormData();
+                for (const [key, value] of formData.entries()) {
+                    if (key !== 'resume') {
+                        web3FormData.append(key, value);
+                    }
+                }
 
-                        if (allFollowed) {
-                            // All followed — clean success
-                            modalBody.innerHTML = `
+                const web3FormsRequest = fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: web3FormData
+                });
+
+                const supabaseUrl = 'https://bzgbvjurmtmgrdigoxib.supabase.co';
+                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6Z2J2anVybXRtZ3JkaWdveGliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTQxMDAsImV4cCI6MjA5MzM5MDEwMH0.SZFSnwQBxhL87NvhyeiZljOdrMgUzdPxwGQzYYg6K08';
+
+                const supabaseRequest = (async () => {
+                    try {
+                        const resumeFile = formData.get('resume');
+                        let filePublicUrl = null;
+
+                        if (resumeFile && resumeFile.size > 0) {
+                            const fileName = `${Date.now()}_${resumeFile.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
+                            const uploadResponse = await fetch(`${supabaseUrl}/storage/v1/object/resumes/${fileName}`, {
+                                method: 'POST',
+                                headers: {
+                                    'apikey': supabaseKey,
+                                    'Authorization': `Bearer ${supabaseKey}`,
+                                    'Content-Type': resumeFile.type
+                                },
+                                body: resumeFile
+                            });
+
+                            if (uploadResponse.ok) {
+                                filePublicUrl = `${supabaseUrl}/storage/v1/object/public/resumes/${fileName}`;
+                            } else {
+                                console.error('Failed to upload file to Supabase Storage');
+                            }
+                        }
+
+                        const supabaseData = {
+                            name: formData.get('name'),
+                            email: formData.get('email'),
+                            phone: formData.get('phone'),
+                            linkedin: formData.get('linkedin'),
+                            applied_role: formData.get('applied-role'),
+                            cover_letter: formData.get('cover-letter'),
+                            linkedin_followed: formData.get('linkedin_followed'),
+                            instagram_followed: formData.get('instagram_followed'),
+                            resume_url: filePublicUrl
+                        };
+
+                        return await fetch(`${supabaseUrl}/rest/v1/career_applications`, {
+                            method: 'POST',
+                            headers: {
+                                'apikey': supabaseKey,
+                                'Authorization': `Bearer ${supabaseKey}`,
+                                'Content-Type': 'application/json',
+                                'Prefer': 'return=minimal'
+                            },
+                            body: JSON.stringify(supabaseData)
+                        });
+                    } catch (e) {
+                        console.error('Supabase error:', e);
+                        return null;
+                    }
+                })();
+
+                Promise.all([web3FormsRequest, supabaseRequest])
+                    .then(async ([web3Response, supabaseResponse]) => {
+                        let json = await web3Response.json();
+                        if (web3Response.status == 200) {
+                            const allFollowed = linkedinChecked && instagramChecked;
+
+                            if (allFollowed) {
+                                // All followed — clean success
+                                modalBody.innerHTML = `
                                 <div style="text-align: center;">
                                     <i class="ph-fill ph-check-circle confirm-icon success"></i>
                                     <h3 class="confirm-title">Application Submitted!</h3>
@@ -1189,17 +1260,17 @@
                                     <button class="confirm-dismiss" onclick="document.getElementById('submit-confirm-modal').classList.remove('active')">Close</button>
                                 </div>
                             `;
-                        } else {
-                            // Build reminder for whichever socials they haven't followed
-                            let socialButtons = '';
-                            if (!linkedinChecked) {
-                                socialButtons += `<a href="https://www.linkedin.com/company/cyreton/about/?viewAsMember=true" target="_blank" class="confirm-social-btn"><i class="ph ph-linkedin-logo"></i> Follow on LinkedIn</a>`;
-                            }
-                            if (!instagramChecked) {
-                                socialButtons += `<a href="https://www.instagram.com/cyreton.official?utm_source=qr&igsh=MTNwc3Q5YTZqZGtpeQ==" target="_blank" class="confirm-social-btn instagram-link"><i class="ph ph-instagram-logo"></i> Follow on Instagram</a>`;
-                            }
+                            } else {
+                                // Build reminder for whichever socials they haven't followed
+                                let socialButtons = '';
+                                if (!linkedinChecked) {
+                                    socialButtons += `<a href="https://www.linkedin.com/company/cyreton/about/?viewAsMember=true" target="_blank" class="confirm-social-btn"><i class="ph ph-linkedin-logo"></i> Follow on LinkedIn</a>`;
+                                }
+                                if (!instagramChecked) {
+                                    socialButtons += `<a href="https://www.instagram.com/cyreton.official?utm_source=qr&igsh=MTNwc3Q5YTZqZGtpeQ==" target="_blank" class="confirm-social-btn instagram-link"><i class="ph ph-instagram-logo"></i> Follow on Instagram</a>`;
+                                }
 
-                            modalBody.innerHTML = `
+                                modalBody.innerHTML = `
                                 <div style="text-align: center;">
                                     <i class="ph-fill ph-check-circle confirm-icon success"></i>
                                     <h3 class="confirm-title">Application Submitted!</h3>
@@ -1212,24 +1283,24 @@
                                     <button class="confirm-dismiss" onclick="document.getElementById('submit-confirm-modal').classList.remove('active')">Maybe later</button>
                                 </div>
                             `;
-                        }
+                            }
 
-                        submitModal.classList.add('active');
-                        applicationForm.reset();
-                        document.getElementById('application-section').style.display = 'none';
-                    } else {
-                        console.log(response);
-                        alert(json.message);
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    alert("Something went wrong!");
-                })
-                .then(function() {
-                    submitBtn.textContent = originalBtnText;
-                    submitBtn.disabled = false;
-                });
+                            submitModal.classList.add('active');
+                            applicationForm.reset();
+                            document.getElementById('application-section').style.display = 'none';
+                        } else {
+                            console.log(web3Response);
+                            alert(json.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert("Something went wrong!");
+                    })
+                    .then(function () {
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
             });
         }
     </script>
