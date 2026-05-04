@@ -56,8 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Auto-scroll on careers page to reveal open roles
     if (window.location.pathname.includes('career.html')) {
+        // Prevent browser's native sudden jump on refresh
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
         setTimeout(() => {
-            const firstJobCard = document.querySelector('.job-card');
+            // Only auto-scroll if the user hasn't manually scrolled down yet
+            if (window.scrollY < 50) {
+                const firstJobCard = document.querySelector('.job-card');
             if (firstJobCard) {
                 // Scroll down so the first job card is clearly visible at the bottom of the screen
                 const y = firstJobCard.getBoundingClientRect().top + window.scrollY - window.innerHeight + 300;
@@ -66,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (firstJobCard.getBoundingClientRect().top > window.innerHeight - 50) {
                     slowScrollTo(Math.max(0, y), 2500); // 2.5 seconds duration for a very smooth, slow scroll
                 }
+            }
             }
         }, 1500); // 1.5 second delay
     }
