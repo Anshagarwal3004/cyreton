@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cyreton.com/sitemap.xml
+Sitemap: https://cyreton.in/sitemap.xml
