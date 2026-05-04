@@ -1016,6 +1016,55 @@
                         </div>
                     </div>
 
+                    <!-- Candidate Consent Panel -->
+                    <div class="social-follow-panel" style="margin-top: 1.5rem; border-color: rgba(0, 255, 255, 0.2);">
+                        <div class="social-follow-header" style="align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="ph ph-shield-check" style="font-size: 1.8rem; color: #00FFFF; flex-shrink: 0;"></i>
+                                <div>
+                                    <h4 style="font-size: 1.05rem; color: #fff; margin-bottom: 0;">Candidate Consent & Declaration</h4>
+                                </div>
+                            </div>
+                            <label class="social-check-label" for="consent-all" style="padding: 0.4rem 0.8rem; margin: 0; background: rgba(0, 255, 255, 0.1); border-color: rgba(0, 255, 255, 0.3);">
+                                <input type="checkbox" id="consent-all" />
+                                <span class="custom-checkbox"><i class="ph-fill ph-check"></i></span>
+                                <span style="font-weight: 600; color: #00FFFF; font-size: 0.85rem;">Agree to All</span>
+                            </label>
+                        </div>
+                        
+                        <div class="social-follow-checks" style="gap: 1rem;">
+                            <!-- Privacy Policy (Mandatory) -->
+                            <label class="social-check-label" for="consent-privacy" style="align-items: flex-start;">
+                                <input type="checkbox" id="consent-privacy" name="Consent_Privacy" value="Agreed" class="consent-mandatory consent-item" required />
+                                <span class="custom-checkbox" style="margin-top: 2px;"><i class="ph-fill ph-check"></i></span>
+                                <span style="font-size: 0.85rem; line-height: 1.5; color: rgba(255, 255, 255, 0.8);">
+                                    <strong style="color: #fff;"><a href="privacy-policy.html" target="_blank" style="color: #fff; text-decoration: underline; transition: color 0.3s;" onmouseover="this.style.color='#00FFFF'" onmouseout="this.style.color='#fff'">Privacy Policy & Terms of Use</a> <span style="color: #FFB800;">*</span></strong><br/>
+                                    I consent to the collection, processing, and storage of my personal data for recruitment and evaluation purposes, in accordance with the Digital Personal Data Protection Act (DPDPA), 2023, and Cyreton's Privacy Policy.
+                                </span>
+                            </label>
+
+                            <!-- User Agreement (Mandatory) -->
+                            <label class="social-check-label" for="consent-agreement" style="align-items: flex-start;">
+                                <input type="checkbox" id="consent-agreement" name="Consent_Agreement" value="Agreed" class="consent-mandatory consent-item" required />
+                                <span class="custom-checkbox" style="margin-top: 2px;"><i class="ph-fill ph-check"></i></span>
+                                <span style="font-size: 0.85rem; line-height: 1.5; color: rgba(255, 255, 255, 0.8);">
+                                    <strong style="color: #fff;"><a href="user-agreement.html" target="_blank" style="color: #fff; text-decoration: underline; transition: color 0.3s;" onmouseover="this.style.color='#00FFFF'" onmouseout="this.style.color='#fff'">User Agreement</a> <span style="color: #FFB800;">*</span></strong><br/>
+                                    I declare that all information provided in this application is accurate and truthful. I understand that any misrepresentation may result in the immediate rejection of my application or termination of employment.
+                                </span>
+                            </label>
+
+                            <!-- Internal Marketing (Optional) -->
+                            <label class="social-check-label" for="consent-marketing" style="align-items: flex-start;">
+                                <input type="checkbox" id="consent-marketing" name="Consent_Marketing" value="Agreed" class="consent-item" />
+                                <span class="custom-checkbox" style="margin-top: 2px;"><i class="ph-fill ph-check"></i></span>
+                                <span style="font-size: 0.85rem; line-height: 1.5; color: rgba(255, 255, 255, 0.8);">
+                                    <strong style="color: #fff;">Internal Marketing & Future Opportunities (Optional)</strong><br/>
+                                    I agree to allow Cyreton to retain my personal data in their internal talent pool to contact me for future job alerts, career opportunities, and internal marketing analytics.
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn-primary" id="submit-application-btn"
                         style="width: 100%; justify-content: center; padding: 1.2rem; margin-top: 1rem;">SUBMIT
                         APPLICATION</button>
@@ -1143,6 +1192,49 @@
         const submitModal = document.getElementById('submit-confirm-modal');
         const modalBody = document.getElementById('modal-body-content');
 
+        // --- Candidate Consent Logic ---
+        const consentAll = document.getElementById('consent-all');
+        const consentItems = document.querySelectorAll('.consent-item');
+        const consentMandatory = document.querySelectorAll('.consent-mandatory');
+        const submitBtn = document.getElementById('submit-application-btn');
+
+        function updateSubmitButton() {
+            let allMandatoryChecked = Array.from(consentMandatory).every(cb => cb.checked);
+            submitBtn.disabled = !allMandatoryChecked;
+            
+            if (!allMandatoryChecked) {
+                submitBtn.style.opacity = '0.5';
+                submitBtn.style.cursor = 'not-allowed';
+            } else {
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+            }
+        }
+
+        if (consentAll) {
+            consentAll.addEventListener('change', function() {
+                consentItems.forEach(cb => {
+                    cb.checked = this.checked;
+                });
+                updateSubmitButton();
+            });
+
+            consentItems.forEach(cb => {
+                cb.addEventListener('change', function() {
+                    if (!this.checked) {
+                        consentAll.checked = false;
+                    } else {
+                        let allChecked = Array.from(consentItems).every(item => item.checked);
+                        consentAll.checked = allChecked;
+                    }
+                    updateSubmitButton();
+                });
+            });
+
+            // Initial state check on load
+            updateSubmitButton();
+        }
+
         if (applicationForm && submitModal && modalBody) {
             const submitCloseBtn = submitModal.querySelector('.modal-close');
 
@@ -1225,6 +1317,7 @@
                             cover_letter: formData.get('cover-letter'),
                             linkedin_followed: formData.get('linkedin_followed'),
                             instagram_followed: formData.get('instagram_followed'),
+                            marketing_consent: document.getElementById('consent-marketing').checked ? 'Yes' : 'No',
                             resume_url: filePublicUrl
                         };
 
