@@ -34,6 +34,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Custom slow scroll function
+    function slowScrollTo(targetY, duration) {
+        const startY = window.scrollY;
+        const difference = targetY - startY;
+        const startTime = performance.now();
+
+        function step(currentTime) {
+            const progress = (currentTime - startTime) / duration;
+            if (progress < 1) {
+                // Constant linear speed
+                const ease = progress;
+                window.scrollTo(0, startY + difference * ease);
+                window.requestAnimationFrame(step);
+            } else {
+                window.scrollTo(0, targetY);
+            }
+        }
+        window.requestAnimationFrame(step);
+    }
+
+    // Auto-scroll on careers page to reveal open roles
+    if (window.location.pathname.includes('career.html')) {
+        setTimeout(() => {
+            const firstJobCard = document.querySelector('.job-card');
+            if (firstJobCard) {
+                // Scroll down so the first job card is clearly visible at the bottom of the screen
+                const y = firstJobCard.getBoundingClientRect().top + window.scrollY - window.innerHeight + 300;
+                
+                // Only scroll if the card is currently below the viewport
+                if (firstJobCard.getBoundingClientRect().top > window.innerHeight - 50) {
+                    slowScrollTo(Math.max(0, y), 2500); // 2.5 seconds duration for a very smooth, slow scroll
+                }
+            }
+        }, 1500); // 1.5 second delay
+    }
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
