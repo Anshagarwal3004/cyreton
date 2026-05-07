@@ -1275,6 +1275,7 @@
                 formData.append('linkedin_followed', linkedinChecked ? 'Yes' : 'No');
                 formData.append('instagram_followed', instagramChecked ? 'Yes' : 'No');
 
+                /*
                 // Create a copy of formData without the 'resume' file for Web3Forms
                 const web3FormData = new FormData();
                 for (const [key, value] of formData.entries()) {
@@ -1287,6 +1288,7 @@
                     method: 'POST',
                     body: web3FormData
                 });
+                */
 
                 const supabaseUrl = 'https://bzgbvjurmtmgrdigoxib.supabase.co';
                 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6Z2J2anVybXRtZ3JkaWdveGliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTQxMDAsImV4cCI6MjA5MzM5MDEwMH0.SZFSnwQBxhL87NvhyeiZljOdrMgUzdPxwGQzYYg6K08';
@@ -1344,10 +1346,15 @@
                     }
                 })();
 
+                /*
                 Promise.all([web3FormsRequest, supabaseRequest])
                     .then(async ([web3Response, supabaseResponse]) => {
                         let json = await web3Response.json();
                         if (web3Response.status == 200) {
+                */
+                Promise.all([supabaseRequest])
+                    .then(async ([supabaseResponse]) => {
+                        if (supabaseResponse && supabaseResponse.ok) {
                             const allFollowed = linkedinChecked && instagramChecked;
 
                             if (allFollowed) {
@@ -1389,8 +1396,12 @@
                             applicationForm.reset();
                             document.getElementById('application-section').style.display = 'none';
                         } else {
+                            /*
                             console.log(web3Response);
                             alert(json.message);
+                            */
+                            console.log("Supabase submission failed");
+                            alert("Something went wrong!");
                         }
                     })
                     .catch(error => {
